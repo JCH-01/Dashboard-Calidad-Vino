@@ -14,6 +14,7 @@ import pandas as pd
 from ucimlrepo import fetch_ucirepo
 from sklearn.tree import DecisionTreeRegressor
 import numpy as np
+import os
 
 wine = fetch_ucirepo(id=186)
 df = wine.data.features.copy()
@@ -269,4 +270,5 @@ def actualizar_heatmap(variable_destacada):
     return fig
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 8080))
+    app.run_server(debug=True, host="0.0.0.0", port=port)
